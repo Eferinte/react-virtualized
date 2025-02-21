@@ -1,9 +1,9 @@
 {
-  "name": "react-virtualized",
+  "name": "@meta-carbon/react-virtualized",
   "description": "React components for efficiently rendering large, scrollable lists and tabular data",
   "author": "Brian Vaughn <brian.david.vaughn@gmail.com>",
-  "user": "bvaughn",
-  "version": "9.22.6",
+  "user": "eferinte",
+  "version": "9.22.7-beta.1",
   "homepage": "https://github.com/bvaughn/react-virtualized",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
@@ -34,7 +34,8 @@
     "test:jest": "jest --no-watchman --runInBand",
     "test:coverage": "jest --no-watchman --maxWorkers 2 --coverage && codecov",
     "watch": "watch 'clear && yarn run test -s' source",
-    "watch:jest": "jest --no-watchman --watch"
+    "watch:jest": "jest --no-watchman --watch",
+    "release": "mc-bump && npm publish --registry=http://nexus.metac-inc.com/repository/npm-hosted/"
   },
   "husky": {
     "hooks": {
