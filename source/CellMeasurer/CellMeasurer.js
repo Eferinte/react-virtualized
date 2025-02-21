@@ -149,10 +149,17 @@ export default class CellMeasurer extends React.PureComponent<Props> {
 
     const {height, width} = this._getCellMeasurements();
 
-    if (
-      height !== cache.getHeight(rowIndex, columnIndex) ||
-      width !== cache.getWidth(rowIndex, columnIndex)
-    ) {
+    // some times we want to set cell width or height just fill the container without measure;
+    //
+    // when set fix height/width without set default value, pass the cache update;
+    const sameHeight =
+      (cache.hasFixedHeight() && !cache.hasCustomDefaultHeight) ||
+      height === cache.getHeight(rowIndex, columnIndex);
+    const sameWidth =
+      (cache.hasFixedWidth() && !cache.hasCustomDefaultHeight) ||
+      width === cache.getWidth(rowIndex, columnIndex);
+
+    if (!sameHeight || !sameWidth) {
       cache.set(rowIndex, columnIndex, width, height);
 
       if (parent && typeof parent.recomputeGridSize === 'function') {
