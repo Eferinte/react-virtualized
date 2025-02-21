@@ -42,6 +42,8 @@ export default class CellMeasurerCache implements CellMeasureCache {
   _keyMapper: KeyMapper;
   _hasFixedHeight: boolean;
   _hasFixedWidth: boolean;
+  _hasCustomDefaultHeight: boolean;
+  _hasCustomDefaultWidth: boolean;
   _columnCount = 0;
   _rowCount = 0;
 
@@ -58,6 +60,8 @@ export default class CellMeasurerCache implements CellMeasureCache {
 
     this._hasFixedHeight = fixedHeight === true;
     this._hasFixedWidth = fixedWidth === true;
+    this._hasCustomDefaultHeight = typeof defaultHeight === 'number';
+    this._hasCustomDefaultWidth = typeof defaultWidth === 'number';
     this._minHeight = minHeight || 0;
     this._minWidth = minWidth || 0;
     this._keyMapper = keyMapper || defaultKeyMapper;
@@ -136,6 +140,13 @@ export default class CellMeasurerCache implements CellMeasureCache {
 
   hasFixedWidth(): boolean {
     return this._hasFixedWidth;
+  }
+  hasCustomDefaultHeight(): boolean {
+    return this._hasCustomDefaultHeight;
+  }
+
+  hasCustomDefaultWidth(): boolean {
+    return this._hasCustomDefaultWidth;
   }
 
   getHeight(rowIndex: number, columnIndex: number = 0): number {
